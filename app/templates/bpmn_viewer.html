@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>BPMN Viewer</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/site.css')}}" />
+    </head>
+
+    <body>
+        <div class="navbar">
+            <a href="{{ url_for('home') }}" class="navbar-brand">Home</a>
+            <a href="{{ url_for('bpmnViewer') }}" class="navbar-item">BPMN Viewer</a>
+            <a href="{{ url_for('activityRecognition') }}" class="navbar-item">Activity Recognition</a>
+            <a href="{{ url_for('processStepMapping') }}" class="navbar-item">Process Step Mapping</a>
+            <a href="{{ url_for('onlineConformanceCheck') }}" class="navbar-item">Online Conformance Checker</a>
+        </div>
+
+        <div class="body-content">
+            <!-- <p>This is the viewer for the BPMN process models.</p> -->
+            <!-- <div id="subscribed_HAR_messages"></div> -->
+            <img src="{{ url_for('static', filename='img/example_diagrams.svg') }}" alt="BPMN Models">
+            <hr/>
+            <footer>
+                <p>© 2021</p>
+            </footer>
+        </div>
+
+        <script src="{{ url_for('static', filename='js/jQuery/jquery-3.6.0.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/socketIO/socket.io.min.js') }}"></script>
+    </body>
+</html>

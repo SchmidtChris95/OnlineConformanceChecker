@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>{% block title %}{% endblock %}</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='site.css')}}" />
+    </head>
+
+    <body>
+        <div class="navbar">
+            <a href="{{ url_for('home') }}" class="navbar-brand">Home</a>
+            <a href="{{ url_for('bpmnViewer') }}" class="navbar-item">BPMN Viewer</a>
+            <a href="{{ url_for('activityRecognition') }}" class="navbar-item">Activity Recognition</a>
+            <a href="{{ url_for('processStepMapping') }}" class="navbar-item">Process Step Mapping</a>
+            <a href="{{ url_for('onlineConformanceCheck') }}" class="navbar-item">Online Conformance Checker</a>
+        </div>
+
+        <div class="body-content">
+            {% block content %}
+            {% endblock %}
+            <hr/>
+            <footer>
+                <p>© 2021</p>
+            </footer>
+        </div>
+    </body>
+</html>

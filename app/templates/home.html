@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Home</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/site.css')}}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/toastr/toastr.css')}}">
+
+</head>
+
+<body>
+    <div class="navbar">
+        <a href="{{ url_for('home') }}" class="navbar-brand">Home</a>
+        <a href="{{ url_for('bpmnViewer') }}" class="navbar-item">BPMN Viewer</a>
+        <a href="{{ url_for('activityRecognition') }}" class="navbar-item">Activity Recognition</a>
+        <a href="{{ url_for('processStepMapping') }}" class="navbar-item">Process Step Mapping</a>
+        <a href="{{ url_for('onlineConformanceCheck') }}" class="navbar-item">Online Conformance Checker</a>
+    </div>
+
+    <div class="body-content">
+        <p>Home page for the online conformance checking prototype for manual tasks.</p>
+        
+        <div class="row-fluid">
+            <button type="button" onclick="All_button_start()">Start ALL</button>
+            <button type="button" onclick="All_button_stop()">Stop ALL</button>
+        </div>
+ 
+        <div class="row-fluid">
+            <button type="button" onclick="DP_button_start()">Start Data Producer</button>
+            <button type="button" onclick="DP_button_stop()">Stop Data Producer</button>
+        </div>        
+        
+        <hr />
+
+        <div class="row-fluid">
+            <button type="button" onclick="HAR_button_start()">Start HAR</button>
+            <button type="button" onclick="BP_mapping_button_start()">Start BP mapping</button>
+            <button type="button" onclick="CC_button_start()">Start Conformance Checking</button>
+        </div>
+
+        <div class="row-fluid">
+            <button type="button" onclick="HAR_button_stop()">Stop HAR</button>
+            <button type="button" onclick="BP_mapping_button_stop()">Stop BP mapping</button>
+            <button type="button" onclick="CC_button_stop()">Stop Conformance Checking</button>
+        </div>
+        
+        <hr />
+        <footer>
+            <p>© 2021</p>
+        </footer>
+
+        <p><strong>MQTT log:</strong></p>
+        <div id="subscribed_messages"></div>
+    </div>
+
+    <script type=text/javascript>
+        $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+      </script>
+
+    <script src="{{ url_for('static', filename='js/jQuery/jquery-3.6.0.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/toastr/toastr.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/socketIO/socket.io.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/home.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/socketIO.js') }}"></script>
+
+</body>
+</html>
+
