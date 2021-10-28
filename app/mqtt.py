@@ -11,10 +11,6 @@ from . import occ
 broker = "broker.hivemq.com"
 port = 1883
 
-generalMode = False
-dataProducer = False
-lowLevel_processTrace = process.active_process_lowLevelActivityTrace
-
 har_topic = "/cs/har"
 bpm_topic = "/cs/bpm"
 occ_topic = "/cs/occ"
@@ -80,32 +76,5 @@ def subscribe(client: mqtt_client, socketio, topic):
             
     client.subscribe(topic)
     client.on_message = on_message
-
-
-def startDataProducer (dp_client, har_topic, bpm_topic, occ_topic):
-    if (generalMode == True):
-        x = 0
-        while dataProducer:
-            message = {
-                "text": "This is a test" + str(x)
-            }
-            jsonData = json.dumps(message)
-            publish(dp_client, har_topic, jsonData)
-            publish(dp_client, bpm_topic, jsonData)
-            publish(dp_client, occ_topic, jsonData)
-            x+=1
-            time.sleep(2)
-    else:
-        for lowLevelactivity in lowLevel_processTrace:
-            if dataProducer:
-                # textData = lowLevelActivities.activityToString(activity)
-                # publish(dp_client, har_topic, textData)
-
-                jsonData = json.dumps(lowLevelactivity)
-                publish(dp_client, har_topic, jsonData)
-                
-                time.sleep(random.randint(1, 3))
-            else:
-                break
 
 

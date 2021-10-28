@@ -30,7 +30,7 @@ BP_2_left = {
     "highlevelActivities": [hla.ID_20,hla.ID_21,hla.ID_22,hla.ID_23,hla.ID_24,hla.ID_25_left,hla.ID_26,hla.ID_27]
 }
  
-# Alle LowLevel Traces
+# Alle LowLevel Traces --> Relevant für Dataproducer
 BP_0_right_lowLevelActivityTrace = [ #BP0_right
     lla.WALK_INBOX,lla.BEND,lla.GRASP_BOTH,lla.WALK_MACHINE,                #ID0
     lla.LIFT_BOTH,lla.STRETCH_BOTH,lla.RELEASE_BOTH,                        #ID1

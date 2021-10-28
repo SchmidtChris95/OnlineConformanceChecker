@@ -67,5 +67,5 @@ function BP_mapping_button_start() {
   }
 
   function handle_response(response) {
-    toastr.success('Successfully executed ' + response.source, 'Success', {positionClass:'toast-top-center'})
+    toastr.success('Successfully finished executing ' + response.source, 'Success', {positionClass:'toast-top-center'})
   }

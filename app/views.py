@@ -3,7 +3,9 @@ from flask import Flask, render_template, jsonify
 import eventlet
 from flask_socketio import SocketIO
 from . import mqtt
+from . import dataProducer
 from . import bpm
+from . import occ
 from . import app
 
 # eventlet.monkey_patch()
@@ -151,6 +153,7 @@ def start_occ():
         }
         return jsonify(response),500
     
+    occ.init_checking()
     mqtt.occ_client = mqtt.connect_mqtt()
     mqtt.subscribe(mqtt.occ_client, socketio, mqtt.occ_topic)
     mqtt.occ_client.loop_start()
@@ -182,16 +185,16 @@ def stop_occ():
 def start_dp():
 
     # falls schon gestartet
-    if mqtt.dataProducer == True:
+    if dataProducer.dataProducer == True:
         response = {
             "message": "DataProducer already started.",
             "source": "start_dp"
         }
         return jsonify(response),500
     
-    mqtt.dataProducer = True
+    dataProducer.dataProducer = True
     mqtt.dp_client = mqtt.connect_mqtt()
-    mqtt.startDataProducer(mqtt.dp_client, mqtt.har_topic, mqtt.bpm_topic, mqtt.occ_topic)
+    dataProducer.startDataProducer(mqtt.dp_client, mqtt.har_topic, mqtt.bpm_topic, mqtt.occ_topic)
     
     response = {
            "source": "start_dp"
@@ -202,16 +205,17 @@ def start_dp():
 def stop_dp():
 
     # falls noch nicht gestarted
-    if mqtt.dataProducer == False:
+    if  dataProducer.dataProducer == False:
         response = {
             "message": "DataProducer not yet started.",
             "source": "stop_dp"
         }
         return jsonify(response),500    
 
-    mqtt.dataProducer = False
+    dataProducer.dataProducer = False
     mqtt.disconnect(mqtt.dp_client)
     mqtt.dp_client = ""
+    stop_all()
 
     
     response = {

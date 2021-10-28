@@ -7,6 +7,11 @@ from . import mqtt
 
 rec_steps = []
 
+# Schon erkannte Steps zurücksetzen
+def init_checking():
+    global rec_steps
+    rec_steps = []
+
 def highLevelActivity_received(msg,tnow):
     
     # Extract the process step infos
