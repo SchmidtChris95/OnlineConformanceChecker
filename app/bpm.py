@@ -116,7 +116,9 @@ def lowLevelActivity_received(msg,tnow):
                 possible_matches = new_matches
                 break         
 
-        # TODO Invariante, wenn nichts gefunden! --> also wenn die Reihenfolge der LLA mit keiner HLA übereinstimmt
+        # TODO [Future Work] Invariante, wenn nichts gefunden! --> also wenn die Reihenfolge der LLA mit keiner HLA übereinstimmt 
+        # Kein eindeutiges Mapping möglich --> flexiblere  Algorithmen einsetzen
+        
         
         # nur noch ein Mapping möglich! --> Mapping ausgeben 
         send_mapping(possible_matches[0])
@@ -131,6 +133,6 @@ def lowLevelActivity_received(msg,tnow):
         print("Entscheidung treffen: Maximale Anzahl an erkannten Lowlevel Activities.")
         for x in rec_activities:
             print(lla.lowLevelActivityToString(x))
-            # TODO: diesen Fall abdecken
+            # TODO [Future Work]: Kann wegen Annahme (vgl. S. 87 in Ausarbeitung) hier nicht vorkommen 
 
     return
