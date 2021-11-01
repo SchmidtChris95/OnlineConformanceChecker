@@ -2,13 +2,14 @@
 A prototype for an online conformance checker tool for industrial processes with manual steps.
 
 ## Main Requirements
-- Python 3.9.5
+- Python >= 3.9.5
+- Pip >= 21.1.3
 - Flask 2.0.1
 - Flask SocketIO 5.1.0
 - Paho-mqtt 1.5.1
 - For more requirements see [requirements.txt](https://github.com/SchmidtChris95/OnlineConformanceChecker/blob/master/requirements.txt)
 
-## Installation
+## Installation (for MacOS)
 1. Install Python at least in version 3.9.5
 2. Download the [source code](https://github.com/SchmidtChris95/OnlineConformanceChecker.git) of this prototype
 3. Install pip via terminal to manage dependencies for Python. Run the following commands:
@@ -36,9 +37,15 @@ Open the webapp (running on localhost), start all modules and run the data produ
 To switch the example business process, change the variables *active_process_set* and *active_process_lowLevelActivityTrace* at the end of the file [process.py](https://github.com/SchmidtChris95/OnlineConformanceChecker/blob/master/app/process.py) and restart the app.
 
 ```python
-#######################################################
-# Alle möglichen HLA aus dem aktiven Geschäftsprozess #
-#######################################################
+# Damit die simulierte Prozessausführung mit dem Soll-Prozess übereinstimmt,
+# müssen sich die Paare aus "active_process_set" und "active_process_lowLevelActivityTrace" 
+# immer auf den gleichen Prozess beziehen!
+# z.B. Beide Variablen müssen mit "BP_0_right" starten.
+
+#########################################################
+## Alle möglichen HLA aus dem aktiven Geschäftsprozess ##
+##### Definiert welcher Soll-Prozess zugrundeliegt ######
+#########################################################
 
 active_process_set = BP_0_right["highlevelActivities"] 
 # active_process_set = BP_0_left["highlevelActivities"] 
@@ -46,9 +53,10 @@ active_process_set = BP_0_right["highlevelActivities"]
 # active_process_set = BP_2_right["highlevelActivities"] 
 # active_process_set = BP_2_left["highlevelActivities"] 
 
-###########################################
-# LowLevelActitity Trace für Dataproducer #
-###########################################
+#############################################
+## LowLevelActitity Trace für Dataproducer ##
+##### Legt simulierten Input Trace fest #####
+#############################################
 
 active_process_lowLevelActivityTrace = BP_0_right_lowLevelActivityTrace
 # active_process_lowLevelActivityTrace = BP_0_left_lowLevelActivityTrace
