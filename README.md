@@ -40,17 +40,17 @@ To switch the example business process, change the variables *active_process_set
 # Alle möglichen HLA aus dem aktiven Geschäftsprozess #
 #######################################################
 
-# active_process_set = BP_0_right["highlevelActivities"] 
+active_process_set = BP_0_right["highlevelActivities"] 
 # active_process_set = BP_0_left["highlevelActivities"] 
 # active_process_set = BP_1["highlevelActivities"] 
-active_process_set = BP_2_right["highlevelActivities"] 
+# active_process_set = BP_2_right["highlevelActivities"] 
 # active_process_set = BP_2_left["highlevelActivities"] 
 
 ###########################################
 # LowLevelActitity Trace für Dataproducer #
 ###########################################
 
-# active_process_lowLevelActivityTrace = BP_0_right_lowLevelActivityTrace
+active_process_lowLevelActivityTrace = BP_0_right_lowLevelActivityTrace
 # active_process_lowLevelActivityTrace = BP_0_left_lowLevelActivityTrace
 # active_process_lowLevelActivityTrace = BP_0_right_alternative_wrong1_lowLevelActivityTrace
 # active_process_lowLevelActivityTrace = BP_0_right_alternative_wrong2_lowLevelActivityTrace
@@ -62,7 +62,7 @@ active_process_set = BP_2_right["highlevelActivities"]
 # active_process_lowLevelActivityTrace = BP_2_right_alternative_lowLevelActivityTrace 
 # active_process_lowLevelActivityTrace = BP_2_right_alternative2_lowLevelActivityTrace 
 # active_process_lowLevelActivityTrace = BP_2_right_alternative_wrong1_lowLevelActivityTrace
-active_process_lowLevelActivityTrace = BP_2_right_alternative_wrong2_lowLevelActivityTrace 
+# active_process_lowLevelActivityTrace = BP_2_right_alternative_wrong2_lowLevelActivityTrace 
 ```
 
 ## Contributing
