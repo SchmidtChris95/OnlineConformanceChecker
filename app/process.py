@@ -220,9 +220,16 @@ BP_2_right_alternative_wrong2_lowLevelActivityTrace = [
     lla.WALK_TOOLBOX,lla.LIFT_BOTH,lla.RELEASE_BOTH                                      #ID27
 ]
 
-#######################################################
-# Alle möglichen HLA aus dem aktiven Geschäftsprozess #
-#######################################################
+
+# Damit die simulierte Prozessausführung mit dem Soll-Prozess übereinstimmt,
+# müssen sich die Paare aus "active_process_set" und "active_process_lowLevelActivityTrace" 
+# immer auf den gleichen Prozess beziehen!
+# z.B. Beide Variablen müssen mit "BP_0_right" starten.
+
+#########################################################
+## Alle möglichen HLA aus dem aktiven Geschäftsprozess ##
+##### Definiert welcher Soll-Prozess zugrundeliegt ######
+#########################################################
 
 active_process_set = BP_0_right["highlevelActivities"] 
 # active_process_set = BP_0_left["highlevelActivities"] 
@@ -230,9 +237,10 @@ active_process_set = BP_0_right["highlevelActivities"]
 # active_process_set = BP_2_right["highlevelActivities"] 
 # active_process_set = BP_2_left["highlevelActivities"] 
 
-###########################################
-# LowLevelActitity Trace für Dataproducer #
-###########################################
+#############################################
+## LowLevelActitity Trace für Dataproducer ##
+##### Legt simulierten Input Trace fest #####
+#############################################
 
 active_process_lowLevelActivityTrace = BP_0_right_lowLevelActivityTrace
 # active_process_lowLevelActivityTrace = BP_0_left_lowLevelActivityTrace
