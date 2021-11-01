@@ -12,9 +12,10 @@ def init_checking():
     global rec_steps
     rec_steps = []
 
+# Konformitätsprüfung starten
 def highLevelActivity_received(msg,tnow):
     
-    # Extract the process step infos
+    # Prozesschrittinformation extrahieren
     jsonMessage=json.loads(msg.payload.decode()) #decode json data
     id = jsonMessage["id"]
     name = jsonMessage["name"]
@@ -24,19 +25,19 @@ def highLevelActivity_received(msg,tnow):
     maxOccurrence = jsonMessage["maxOccurrence"]
     maxProcessingTime = jsonMessage["maxProcessingTime"]
 
-    # Create recognized process step object
+    # Instanz eines erkannten Process Schritt Objekts erzeugen
     rec_step = createRecStep(id, name, lowlevelActivities,pred,succ,maxOccurrence,maxProcessingTime,tnow)
     rec_steps.append(rec_step)
 
 
-    # Check the conformance rule
+    # Regelbasierte Prüfung starten
     rule1(rec_step)
     rule2(rec_step)
     rule3(rec_step)
 
     return
 
-# Triggered, when violation is detected
+# Aufgerufen, wenn Abweichung erkannt --> Ausgeben
 def violation_Detected(text, type, rec_step):
     violation = createViolation(text, type, rec_step["id"])
     jsonData = json.dumps(violation)

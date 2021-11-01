@@ -31,6 +31,7 @@ def rec_activityToString(rec_activity):
     else:
         return activity + "_" + attribute + "_" + timestamp
 
+# Initiiert das Mapping, nachdem ein Schritt erkannt wurde
 def init_mapping():
     global possible_matches
     global rec_activities
@@ -41,11 +42,13 @@ def init_mapping():
     maxPossibleActivityThreshold = -1
     return
 
+# Mapping ausgeben
 def send_mapping(bpm_activity):
     jsonData = json.dumps(bpm_activity)
     mqtt.publish(mqtt.bpm_client, mqtt.bpm_topic, jsonData)
     init_mapping()
 
+# Unpassende Mappings aus der Liste der möglichen Entfernen
 def eliminate_mismatches(rec_activity):
     global possible_matches
 
@@ -66,6 +69,7 @@ def eliminate_mismatches(rec_activity):
             matches.remove(possible_match) #Damit rauslöschen nicht die for schleife behindert
     return matches
 
+# Low Level Aktivität von HAR Modul erhalten
 def lowLevelActivity_received(msg,tnow):
     global possible_matches
     global rec_activities

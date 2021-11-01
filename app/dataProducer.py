@@ -10,9 +10,9 @@ dataProducer = False
 # Zu simulierende Prozessdurchführung:
 lowLevel_processTrace = process.active_process_lowLevelActivityTrace
 
-
+# Starte den Data Producer, der "künstliche HAR-Daten" erzeugt und ausgibt --> Simulierte HAR-Komponente
 def startDataProducer (dp_client, har_topic, bpm_topic, occ_topic):
-    # Produziert nur irgendwelche Daten
+    # Produziert nur irgendwelche Daten ohne Sinn
     if (testMode == True):
         x = 0
         while dataProducer:
@@ -25,6 +25,7 @@ def startDataProducer (dp_client, har_topic, bpm_topic, occ_topic):
             mqtt.publish(dp_client, occ_topic, jsonData)
             x+=1
             time.sleep(2)
+            
     # Produziert konkrete Low-Level-Aktivitäten
     else:
         for lowLevelactivity in lowLevel_processTrace:

@@ -1,7 +1,7 @@
 from . import highLevelActivities as hla
 from . import lowLevelActivities as lla
 
-# NOTE: Modify "active_process_set" and "active_process_lowLevelActivityTrace" to change example process!
+# NOTE: Variablen "active_process_set" und "active_process_lowLevelActivityTrace" am Ende dieser Daten anpassen um anderen Beispielprozess auszuwählen
 
 # Geschäftsprozesse
 BP_0_right = {
@@ -93,7 +93,7 @@ BP_0_right_alternative_wrong3_lowLevelActivityTrace = [ #BP0_right_alternative_w
     lla.WALK_UI,lla.TAP_LONG,lla.WALK_MACHINE,                          #ID5
     lla.LIFT_RIGHT,lla.GRASP_RIGHT,lla.PULL_RIGHT,lla.RELEASE_RIGHT,    #ID6
     lla.WALK_UI,lla.TAP_SHORT,lla.WALK_MACHINE,                         #ID7
-    lla.GRASP_RIGHT,lla.LIFT_RIGHT,lla.RELEASE_RIGHT,lla.STRETCH_BOTH   #ID8    # not conform (end missing) # TODO
+    lla.GRASP_RIGHT,lla.LIFT_RIGHT,lla.RELEASE_RIGHT,lla.STRETCH_BOTH   #ID8    # not conform (end missing) 
 ]
 
 BP_1_lowLevelActivityTrace = [ #BP1

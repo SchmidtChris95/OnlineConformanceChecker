@@ -20,24 +20,27 @@ bpm_client = ""
 occ_client = ""
 dp_client = ""
 
+# Verbindung zum Broker herstellen
 def connect_mqtt():
-    client_id = f'python-mqtt-{random.randint(0, 1000)}'  # randomly generate MQTT client id
+    client_id = f'python-mqtt-{random.randint(0, 1000)}'  # generiere eine zufällige Client ID
     def on_connect(client, userdata, flags, rc):
         if rc == 0:
             print("Connected to MQTT Broker!")
         else:
             print("Failed to connect, return code %d\n", rc)
-    # Set Connecting Client ID
+    # Setze Connecting Client ID
     client = mqtt_client.Client(client_id)
     #client.username_pw_set(username, password)
     client.on_connect = on_connect
     client.connect(broker, port)
     return client
 
+# Verbindung schließen
 def disconnect (client):
     client.disconnect()
     print("Disconnected from MQTT Broker!")
 
+# Message in ein bestimmtes Topic publishen
 def publish(client, topic, msg):
     result = client.publish(topic,msg)
     # result: [0, 1]
@@ -48,7 +51,7 @@ def publish(client, topic, msg):
     else:
         print(f"Failed to send message to topic {topic}")
 
-
+# Ein bestimmtes Topic subscriben
 def subscribe(client: mqtt_client, socketio, topic):
     def on_message(client, userdata, msg):
         tnow=datetime.now()
@@ -58,7 +61,7 @@ def subscribe(client: mqtt_client, socketio, topic):
             payload=msg.payload.decode(),
             timestamp=str(tnow)
         )
-        # emit a mqtt_message events to the socket containing the message data
+        # Nachricht an den Socket senden, damit sie im UI ausgegeben werden kann.
         socketio.emit('mqtt_message', data=data)
 
         if msg.topic == "/cs/har":    
@@ -67,11 +70,9 @@ def subscribe(client: mqtt_client, socketio, topic):
             occ.highLevelActivity_received(msg,tnow)
         elif msg.topic == "/cs/occ":
             True
-            # TODO: Here occ_warn function start
-            # print("Start occ_message_received Function")
+            # TODO [Future Work]: Starte Funktion zum Warnen des Mitarbeiters..
 
         else:
-            # TODO: Here unknown channel function
             print("unknown channel")
             
     client.subscribe(topic)
